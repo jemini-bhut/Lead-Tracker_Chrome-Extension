@@ -26,6 +26,12 @@ button {
     border-color: #5f9341;
 }
 
+#delete-btn {
+    background-color: white;
+    color: #5f9341;
+    border-color: #5f9341;
+}
+
 /* Styling the list elements */
 ul {
     list-style-type: none;

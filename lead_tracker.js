@@ -2,14 +2,32 @@ let myLeads = [];
 const inputEl = document.getElementById("input-el");
 const ulEl = document.getElementById("ul-el");
 const inputBtn = document.getElementById("input-btn");
+const deleteBtn = document.getElementById("delete-btn");
 
 // Adding new leads to the list.
 inputBtn.addEventListener("click", function() {
     const lead = inputEl.value;
     myLeads.push(lead);
     inputEl.value = ""; // Clearing the input field.
-    renderLeads();    
+    localStorage.setItem("myLeads", JSON.stringify(myLeads));
+    renderLeads();
+    //console.log( localStorage.getItem("myLeads"));
 })
+
+// Deleting the leads from the list.
+deleteBtn.addEventListener("dblclick", function() {
+    console.log("Delete button clicked");
+    localStorage.clear(); // Local storage cleared.
+    myLeads = []; // Array is cleared.
+    renderLeads(); // Rendering the empty list.
+})
+
+// Saving the values to the array.
+const leadsFromLocalStorage = JSON.parse(localStorage.getItem("myLeads"));
+if (leadsFromLocalStorage) {
+    myLeads = leadsFromLocalStorage;
+    renderLeads();
+}
 
 // Rendering the entiries to the list.
 function renderLeads() {
